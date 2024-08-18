@@ -1,23 +1,13 @@
 class Solution:
     def canSplit(self, arr):
-        total_sum = sum(arr)
-        
-        if total_sum%2!=0:
-            return False
-            
-        target_sum = total_sum//2
-        current_sum = 0
-            
-        for num in arr:  
-            current_sum += num
-            
-            if current_sum == target_sum:
+        left=0
+        right=sum(arr)
+        for i in arr:
+            left+=i
+            right-=i
+            if left==right:
                 return True
-       
         return False
-        
-           
-        
 
 
 #{ 
