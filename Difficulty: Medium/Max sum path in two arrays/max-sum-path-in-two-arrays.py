@@ -1,45 +1,47 @@
 #Your task is to complete this function
 #Function should return an integer denoting the required answer
 class Solution:
-    def maxSumPath(self, arr1, arr2, m, n):
-        i, j = 0, 0
-        result, sum1, sum2 = 0, 0, 0
-        
-        while i < m and j < n:
-            if arr1[i] < arr2[j]:
-                sum1 += arr1[i]
-                i += 1
-            elif arr1[i] > arr2[j]:
-                sum2 += arr2[j]
-                j += 1
+    def maxPathSum(self, arr1, arr2):
+        # Code here
+        i=j=s1=s2=ans=0
+        n=len(arr1)
+        m=len(arr2)
+        while i<n or j<m:
+            if j==m:
+                s1+=arr1[i]
+                i+=1
+                continue 
+            if i==n:
+                s2+=arr2[j]
+                j+=1
+                continue 
+            if arr1[i]>arr2[j]:
+                s2+=arr2[j]
+                j+=1
+            elif arr1[i]<arr2[j]:
+                s1+=arr1[i]
+                i+=1
             else:
-                result += max(sum1, sum2) + arr1[i]
-                sum1, sum2 = 0, 0
-                i += 1
-                j += 1
-        
-        while i < m:
-            sum1 += arr1[i]
-            i += 1
-        
-        while j < n:
-            sum2 += arr2[j]
-            j += 1
-        
-        result += max(sum1, sum2)
-        
-        return result 
-        #code here
+                s1+=arr1[i]
+                i+=1
+                s2+=arr2[j]
+                j+=1
+                ans+=max(s1,s2)
+                s1=s2=0
+        ans+=max(s1,s2)
+        return ans
+
 
 
 #{ 
  # Driver Code Starts
-if __name__=='__main__':
-    t = int(input())
-    for i in range(t):
-        m,n = list(map(int, input().strip().split()))
+if __name__ == "__main__":
+    t = int(input().strip())
+    for _ in range(t):
         arr1 = list(map(int, input().strip().split()))
         arr2 = list(map(int, input().strip().split()))
-        print(Solution().maxSumPath(arr1, arr2, m, n))
-# Contributed by: Harshit Sidhwa
+        ob = Solution()
+        ans = ob.maxPathSum(arr1, arr2)
+        print(ans)
+
 # } Driver Code Ends
