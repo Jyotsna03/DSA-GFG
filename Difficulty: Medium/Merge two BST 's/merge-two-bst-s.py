@@ -5,29 +5,36 @@
 # } Driver Code Ends
 #User function Template for python3
 class Solution:
-    def inorder(self, root, ans):
-        # If the current node is None, return
-        if root is None:
-            return 
-        # Recursively traverse the left subtree
-        self.inorder(root.left, ans)
-        # Add the current node's data to the answer list
-        ans.append(root.data)
-        # Recursively traverse the right subtree
-        self.inorder(root.right, ans)
-
-    def merge(self, root1, root2):
-        # Initialize an empty list to hold the inorder traversal results
-        ans = []
-        # Perform inorder traversal on the first tree and store the results in ans
-        self.inorder(root1, ans)
-        # Perform inorder traversal on the second tree and store the results in ans
-        self.inorder(root2, ans)
-        # Sort the combined results from both trees
-        ans.sort()
-        # Return the sorted list
-        return ans
-        # code here
+  def merge(self, root1, root2):
+        
+                
+    res = []
+    s1, s2 = [], []
+ 
+    while root1 or root2 or s1 or s2:
+        while root1:
+            s1.append(root1)
+            root1 = root1.left
+ 
+        while root2:
+            s2.append(root2)
+            root2 = root2.left
+ 
+        # Step 3 Case 1:-
+        if not s2 or (s1 and s1[-1].data <= s2[-1].data):
+            root1 = s1[-1]
+            del s1[-1]
+            res.append(root1.data)
+            root1 = root1.right
+ 
+        #  Step 3 case 2 :-
+        else:
+            root2 = s2[-1]
+            del s2[-1]
+            res.append(root2.data)
+            root2 = root2.right
+ 
+    return res
 
 #{ 
  # Driver Code Starts.
