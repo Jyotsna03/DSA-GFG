@@ -5,26 +5,24 @@
 # } Driver Code Ends
 #User function Template for python3
 #User function Template for python3
-
 class Solution:
     
     #Complete this fuction
     #Function to count the number of subarrays which adds to the given sum.
     def subArraySum(self,arr, tar):
         #Your code here
-        cumulative_sum=0
-        sum_counts={0:1}
         count=0
-        for num in arr:
-            cumulative_sum +=num
-            if (cumulative_sum - tar )in sum_counts:
-                count += sum_counts[cumulative_sum - tar]
-            if cumulative_sum in sum_counts:
-                sum_counts[cumulative_sum] += 1
+        s=0
+        sum={0:1}
+        for i in arr:
+            s+=i
+            if (s-tar) in sum:
+                count+=sum[s-tar]
+            elif s in sum:
+                sum[s]+=1
             else:
-                sum_counts[cumulative_sum] = 1
+                sum[s]=1
         return count
-        #Your code here
 
 #{ 
  # Driver Code Starts.
