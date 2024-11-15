@@ -3,11 +3,10 @@ class Solution:
     def getSecondLargest(self, arr):
         # Code Here
         arr=list(set(arr))
-        arr.sort()
-        if len(arr)==1:
-            return "-1"
-        else:
-            return arr[-2]
+        arr1=sorted(arr)
+        if len(arr1)>=2:
+            return arr1[-2]
+        return -1
 
 
 #{ 
@@ -21,5 +20,5 @@ if __name__ == "__main__":
         ob = Solution()
         ans = ob.getSecondLargest(arr)
         print(ans)
-
+        print("~")
 # } Driver Code Ends
