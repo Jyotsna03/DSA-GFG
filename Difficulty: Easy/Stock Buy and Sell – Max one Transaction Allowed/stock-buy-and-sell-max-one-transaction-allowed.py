@@ -1,16 +1,19 @@
 class Solution:
     def maximumProfit(self, prices):
-        sell = 0
-        profit = 0
-        temp = 0
-        for i in range(len(prices)-1,-1,-1):
-            if prices[i]>sell:
-                sell = prices[i]
-            elif prices [i] < sell:
-                temp = sell - prices[i]
-                profit = max(profit, temp)
-        return profit    
         # code here
+        if not prices or len(prices) < 2:
+            return 0  
+        min_price = float('inf')  
+        max_profit = 0  
+
+        for price in prices:
+            
+            min_price = min(min_price, price)
+            
+            max_profit = max(max_profit, price - min_price)
+
+        return max_profit
+
 
 
 #{ 
